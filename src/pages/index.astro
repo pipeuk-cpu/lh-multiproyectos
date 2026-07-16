@@ -4,6 +4,8 @@ import Layout from "../layouts/Layout.astro";
 import BeforeAfterSlider from "../components/BeforeAfterSlider.astro";
 import { waLink, SITE } from "../config/site";
 import tumbagaMirador from "../assets/tumbaga/mirador.png";
+import antesRender from "../assets/tumbaga/antes-render.jpg";
+import despuesRender from "../assets/tumbaga/despues-render.png";
 
 const businessLines = [
   {
@@ -90,7 +92,12 @@ const whyEjeCafetero = [
       </p>
     </div>
     <div class="mt-10">
-      <BeforeAfterSlider beforeImage={tumbagaMirador} beforeAlt="Vista aérea real del mirador en Tumbaga" />
+      <BeforeAfterSlider
+        beforeImage={antesRender}
+        beforeAlt="Foto real del lote en Tumbaga"
+        afterImage={despuesRender}
+        afterAlt="Render de la casa posible sobre el lote"
+      />
     </div>
   </section>
 

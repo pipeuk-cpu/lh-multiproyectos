@@ -6,6 +6,8 @@ import LotCard from "../components/LotCard.astro";
 import { waLink, SITE } from "../config/site";
 import { tumbagaLots } from "../data/tumbaga-lots";
 import tumbagaMirador from "../assets/tumbaga/mirador.png";
+import antesRender from "../assets/tumbaga/antes-render.jpg";
+import despuesRender from "../assets/tumbaga/despues-render.png";
 
 const datosClave = [
   "Desde 1.500 m²",
@@ -94,8 +96,10 @@ const mapsSrc =
     </div>
     <div class="mt-10">
       <BeforeAfterSlider
-        beforeImage={tumbagaLots[0].image}
+        beforeImage={antesRender}
         beforeAlt="Foto real del lote en Tumbaga"
+        afterImage={despuesRender}
+        afterAlt="Render de la casa posible sobre el lote"
       />
     </div>
   </section>
