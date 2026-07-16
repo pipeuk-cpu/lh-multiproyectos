@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+/* Binary image assets aren't source code — keep Tailwind's class scanner out of them. */
+@source not "../assets/**/*.{jpg,jpeg,png,webp,avif,mp4}";
+
+@theme {
+  --font-display: "Oswald", "Archivo Expanded", sans-serif;
+  --font-body: "Inter", "Source Sans 3", sans-serif;
+
+  /* LH Multiproyectos / Tumbaga brand palette */
+  --color-brand-forest: #1b2b20;
+  --color-brand-charcoal: #1c1c1c;
+  --color-brand-gold: #c9a227;
+  --color-brand-gold-light: #e8c766;
+  --color-brand-cream: #f7f4ec;
+
+  /* La Aldea secondary accents (used only on /la-aldea) */
+  --color-aldea-green: #3e5c3a;
+  --color-aldea-red: #a63a2b;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}

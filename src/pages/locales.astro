@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/Layout.astro";
+import LocalCard from "../components/LocalCard.astro";
+import { waLink, SITE } from "../config/site";
+import { locales } from "../data/locales";
+---
+
+<Layout
+  title="Locales Comerciales en Arriendo | Cartago"
+  description="Locales comerciales en arriendo en el corazón de Cartago, Valle del Cauca."
+  whatsappMessage={SITE.whatsappMessages.locales}
+>
+  <section class="bg-brand-forest px-4 py-16 text-brand-cream md:px-8 md:py-24">
+    <div class="mx-auto max-w-6xl text-center">
+      <h1 class="font-display text-4xl font-bold uppercase tracking-wide md:text-5xl">
+        Locales Comerciales en Arriendo
+      </h1>
+      <p class="mt-4 text-brand-cream/80">
+        Espacios comerciales bien ubicados en el corazón de Cartago, Valle del Cauca.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-brand-cream px-4 py-16 md:px-8 md:py-24">
+    <div class="mx-auto max-w-6xl">
+      <p class="text-center text-sm text-brand-charcoal/60">
+        [PENDIENTE: confirmar fotos, direcciones y precios exactos con Felipe]
+      </p>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {locales.map((local) => <LocalCard local={local} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-brand-charcoal px-4 py-20 text-center text-brand-cream md:px-8">
+    <h2 class="font-display text-3xl font-bold uppercase tracking-wide md:text-4xl">
+      ¿Buscas un local para tu negocio?
+    </h2>
+    <p class="mt-4 text-brand-cream/80">Escríbenos y te contamos la disponibilidad actual.</p>
+    <a
+      href={waLink(SITE.whatsappMessages.locales)}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mt-8 inline-block rounded-full bg-brand-gold px-10 py-3 font-display text-sm uppercase tracking-wide text-brand-charcoal transition-transform hover:scale-105"
+    >
+      Escríbenos por WhatsApp
+    </a>
+  </section>
+</Layout>

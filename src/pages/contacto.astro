@@ -1,0 +1,121 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { waLink, SITE, CONTACT_EMAIL } from "../config/site";
+---
+
+<Layout
+  title="Contacto | LH Multiproyectos SAS"
+  description="Contáctanos por WhatsApp o deja tus datos y te escribimos. Sala de ventas en Carrera 4 # 12-104, Cartago."
+  whatsappMessage={SITE.whatsappMessages.contacto}
+>
+  <section class="bg-brand-forest px-4 py-16 text-brand-cream md:px-8 md:py-24">
+    <div class="mx-auto max-w-4xl text-center">
+      <h1 class="font-display text-4xl font-bold uppercase tracking-wide md:text-5xl">Contacto</h1>
+      <p class="mt-4 text-brand-cream/80">
+        Escríbenos por WhatsApp — es la forma más rápida de recibir información.
+      </p>
+      <a
+        href={waLink(SITE.whatsappMessages.contacto)}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-8 inline-flex items-center gap-3 rounded-full bg-brand-gold px-10 py-4 font-display text-sm uppercase tracking-wide text-brand-charcoal transition-transform hover:scale-105"
+      >
+        <svg viewBox="0 0 32 32" class="h-6 w-6 fill-current" aria-hidden="true">
+          <path d="M16.001 3C9.373 3 4 8.373 4 15.001c0 2.386.7 4.61 1.902 6.478L4 29l7.72-1.874a12.93 12.93 0 0 0 4.281.727h.003c6.627 0 12-5.373 12-12.001C28.004 8.373 22.63 3 16.001 3Zm0 21.938a9.9 9.9 0 0 1-5.05-1.38l-.362-.215-4.583 1.113 1.132-4.472-.236-.375a9.917 9.917 0 0 1-1.535-5.31c0-5.478 4.457-9.936 9.938-9.936 5.478 0 9.936 4.457 9.936 9.938 0 5.48-4.458 9.937-9.94 9.937Z"/>
+        </svg>
+        Escríbenos por WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <section class="bg-brand-cream px-4 py-16 md:px-8 md:py-24">
+    <div class="mx-auto grid max-w-5xl gap-12 md:grid-cols-2">
+      <!-- Formulario de respaldo -->
+      <div>
+        <h2 class="font-display text-2xl font-bold uppercase tracking-wide text-brand-forest">
+          ¿Prefieres dejar tus datos?
+        </h2>
+        <p class="mt-2 text-sm text-brand-charcoal/70">
+          Completa el formulario y te contactamos por correo. [PENDIENTE: conectar a un servicio como
+          Formspree cuando esté disponible; por ahora se envía por correo.]
+        </p>
+        <form
+          action={`mailto:${CONTACT_EMAIL}`}
+          method="GET"
+          enctype="text/plain"
+          class="mt-6 flex flex-col gap-4"
+        >
+          <div>
+            <label for="nombre" class="mb-1 block font-display text-xs uppercase tracking-wide text-brand-forest">
+              Nombre
+            </label>
+            <input
+              id="nombre"
+              name="nombre"
+              type="text"
+              required
+              class="w-full rounded-lg border border-brand-forest/20 bg-white px-4 py-2 text-brand-charcoal focus:border-brand-gold focus:outline-none"
+            />
+          </div>
+          <div>
+            <label for="telefono" class="mb-1 block font-display text-xs uppercase tracking-wide text-brand-forest">
+              Teléfono
+            </label>
+            <input
+              id="telefono"
+              name="telefono"
+              type="tel"
+              required
+              class="w-full rounded-lg border border-brand-forest/20 bg-white px-4 py-2 text-brand-charcoal focus:border-brand-gold focus:outline-none"
+            />
+          </div>
+          <div>
+            <label for="interes" class="mb-1 block font-display text-xs uppercase tracking-wide text-brand-forest">
+              Interés
+            </label>
+            <select
+              id="interes"
+              name="body"
+              required
+              class="w-full rounded-lg border border-brand-forest/20 bg-white px-4 py-2 text-brand-charcoal focus:border-brand-gold focus:outline-none"
+            >
+              <option value="Tumbaga">Tumbaga</option>
+              <option value="La Aldea">La Aldea</option>
+              <option value="Locales">Locales</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+          <button
+            type="submit"
+            class="mt-2 rounded-full bg-brand-gold px-8 py-3 font-display text-sm uppercase tracking-wide text-brand-charcoal transition-transform hover:scale-105"
+          >
+            Enviar
+          </button>
+        </form>
+      </div>
+
+      <!-- Datos de contacto -->
+      <div class="flex flex-col justify-center gap-6 rounded-xl bg-brand-forest p-8 text-brand-cream">
+        <div>
+          <h3 class="font-display text-sm uppercase tracking-wide text-brand-gold-light">Sala de ventas</h3>
+          <p class="mt-1">{SITE.salesOffice}</p>
+        </div>
+        <div>
+          <h3 class="font-display text-sm uppercase tracking-wide text-brand-gold-light">Teléfono / WhatsApp</h3>
+          <p class="mt-1">[PENDIENTE: número de contacto]</p>
+        </div>
+        <div>
+          <h3 class="font-display text-sm uppercase tracking-wide text-brand-gold-light">Redes sociales</h3>
+          <div class="mt-1 flex flex-col gap-1">
+            <a href={SITE.instagram.lh} target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold-light">
+              Instagram @lhmultiproyectos
+            </a>
+            <a href={SITE.instagram.tumbaga} target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold-light">
+              Instagram @condominiotumbaga
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

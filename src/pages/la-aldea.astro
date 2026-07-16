@@ -1,0 +1,177 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BeforeAfterSlider from "../components/BeforeAfterSlider.astro";
+import LotCard from "../components/LotCard.astro";
+import { waLink, SITE } from "../config/site";
+import { aldeaLots } from "../data/aldea-lots";
+
+const datosClave = [
+  "Alcalá, Valle del Cauca",
+  "Cerca de Filandia, Quindío",
+  "Lotes para finca campestre",
+  "Entorno cafetero",
+];
+
+const estiloDeVida = [
+  { title: "Amaneceres entre cafetales", desc: "Despierta rodeado de montañas y cultivos de café." },
+  { title: "Pueblos patrimonio cerca", desc: "Filandia y Salento a pocos minutos de distancia." },
+  { title: "Clima de montaña", desc: "Temperatura fresca y agradable todo el año." },
+  { title: "Paisaje Cultural Cafetero", desc: "Valorización de una zona declarada Patrimonio de la Humanidad por la UNESCO." },
+];
+
+const distancias = [
+  { lugar: "Filandia", tiempo: "[PENDIENTE: tiempo]" },
+  { lugar: "Cartago", tiempo: "[PENDIENTE: tiempo]" },
+  { lugar: "Pereira", tiempo: "[PENDIENTE: tiempo]" },
+  { lugar: "Armenia", tiempo: "[PENDIENTE: tiempo]" },
+];
+
+const mapsSrc = "https://www.google.com/maps?q=Alcal%C3%A1,Valle+del+Cauca,Colombia&output=embed";
+---
+
+<Layout
+  title="La Aldea, Alcalá | Lotes para finca campestre entre cafetales"
+  description="Lotes para fincas campestres en Alcalá, Valle del Cauca, a pasos de Filandia, en pleno Paisaje Cultural Cafetero."
+  whatsappMessage={SITE.whatsappMessages.laAldea}
+>
+  <!-- Hero -->
+  <section class="relative flex min-h-[90vh] items-center justify-center overflow-hidden bg-aldea-green text-brand-cream">
+    <div class="absolute inset-0 bg-gradient-to-b from-brand-charcoal/60 to-aldea-green"></div>
+    <span class="absolute top-6 left-1/2 -translate-x-1/2 rounded bg-black/30 px-3 py-1 text-center font-display text-xs uppercase tracking-wide text-brand-cream/50">
+      [PENDIENTE: imagen/video de cafetales y colinas del Quindío]
+    </span>
+
+    <div class="relative z-10 mx-auto max-w-3xl px-4 text-center">
+      <h1 class="font-display text-4xl font-bold uppercase leading-tight tracking-wide md:text-6xl">
+        Tu finca entre cafetales.
+      </h1>
+      <p class="mt-5 text-lg text-brand-cream/90 md:text-xl">
+        Lotes para fincas campestres en Alcalá, a pasos de Filandia, en el corazón del Paisaje Cultural Cafetero.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a
+          href={waLink(SITE.whatsappMessages.laAldea)}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full rounded-full bg-aldea-red px-8 py-3 text-center font-display text-sm uppercase tracking-wide text-brand-cream transition-transform hover:scale-105 sm:w-auto"
+        >
+          Conoce La Aldea
+        </a>
+        <a
+          href="#lotes"
+          class="w-full rounded-full border-2 border-brand-cream px-8 py-3 text-center font-display text-sm uppercase tracking-wide text-brand-cream transition-transform hover:scale-105 sm:w-auto"
+        >
+          Ver lotes disponibles
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Datos clave -->
+  <div class="bg-aldea-green/90 px-4 py-4">
+    <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-2">
+      {datosClave.map((dato, i) => (
+        <span class="font-display text-xs uppercase tracking-wide text-brand-cream md:text-sm">
+          {dato}{i < datosClave.length - 1 ? <span class="ml-8 hidden text-brand-cream/40 md:inline">•</span> : null}
+        </span>
+      ))}
+    </div>
+  </div>
+
+  <!-- El estilo de vida cafetero -->
+  <section class="bg-brand-cream px-4 py-16 md:px-8 md:py-24">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="text-center font-display text-3xl font-bold uppercase tracking-wide text-aldea-green md:text-4xl">
+        El estilo de vida cafetero
+      </h2>
+      <div class="mt-10 grid gap-8 sm:grid-cols-2 md:grid-cols-4">
+        {estiloDeVida.map((item) => (
+          <div class="text-center">
+            <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-aldea-red/10 text-aldea-red">
+              <svg viewBox="0 0 24 24" class="h-7 w-7 fill-current"><circle cx="12" cy="12" r="9"/></svg>
+            </div>
+            <h3 class="mt-4 font-display text-base font-bold uppercase tracking-wide text-aldea-green">
+              {item.title}
+            </h3>
+            <p class="mt-2 text-sm text-brand-charcoal/70">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Antes/después -->
+  <section class="bg-brand-cream px-4 pb-16 md:px-8 md:pb-24">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="font-display text-3xl font-bold uppercase tracking-wide text-aldea-green md:text-4xl">
+        El lote real, la finca posible
+      </h2>
+      <p class="mt-4 text-brand-charcoal/80">
+        Arrastra para comparar el terreno tal como está hoy con la finca campestre que podrías construir.
+      </p>
+    </div>
+    <div class="mt-10">
+      <BeforeAfterSlider beforeAlt="Foto real de un lote en La Aldea" />
+    </div>
+  </section>
+
+  <!-- Lotes disponibles -->
+  <section id="lotes" class="bg-aldea-green px-4 py-16 text-brand-cream md:px-8 md:py-24">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="text-center font-display text-3xl font-bold uppercase tracking-wide md:text-4xl">
+        Lotes disponibles
+      </h2>
+      <p class="mt-3 text-center text-sm text-brand-cream/70">
+        [PENDIENTE: confirmar áreas, disponibilidad y material fotográfico real con Felipe]
+      </p>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {aldeaLots.map((lot) => (
+          <LotCard lot={lot} altPrefix="Lote en La Aldea de" accentClass="bg-aldea-red text-brand-cream" />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Ubicación -->
+  <section class="bg-brand-cream px-4 py-16 md:px-8 md:py-24">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="text-center font-display text-3xl font-bold uppercase tracking-wide text-aldea-green md:text-4xl">
+        Ubicación
+      </h2>
+      <div class="mt-10 overflow-hidden rounded-xl border border-aldea-green/10 shadow-lg">
+        <iframe
+          src={mapsSrc}
+          class="h-80 w-full md:h-96"
+          style="border:0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ubicación La Aldea, Alcalá"
+        ></iframe>
+      </div>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+        {distancias.map((d) => (
+          <div class="rounded-lg bg-aldea-green/5 p-4 text-center">
+            <p class="font-display text-sm uppercase tracking-wide text-aldea-green">{d.lugar}</p>
+            <p class="mt-1 text-brand-charcoal/70">{d.tiempo}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section class="bg-brand-charcoal px-4 py-20 text-center text-brand-cream md:px-8">
+    <h2 class="font-display text-3xl font-bold uppercase tracking-wide md:text-4xl">
+      Conoce La Aldea
+    </h2>
+    <p class="mt-4 text-brand-cream/80">Tu finca entre cafetales te está esperando.</p>
+    <a
+      href={waLink(SITE.whatsappMessages.laAldea)}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mt-8 inline-block rounded-full bg-aldea-red px-10 py-3 font-display text-sm uppercase tracking-wide text-brand-cream transition-transform hover:scale-105"
+    >
+      Escríbenos por WhatsApp
+    </a>
+  </section>
+</Layout>

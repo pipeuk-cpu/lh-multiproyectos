@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import { waLink } from "../config/site";
+import type { Lot } from "../types/lot";
+
+interface Props {
+  lot: Lot;
+  altPrefix: string;
+  accentClass?: string;
+}
+
+const { lot, altPrefix, accentClass = "bg-brand-gold text-brand-charcoal" } = Astro.props;
+---
+
+<div class="group flex flex-col overflow-hidden rounded-xl border border-brand-gold/30 bg-brand-charcoal/40 transition-colors hover:border-brand-gold">
+  <div class="relative h-48 overflow-hidden">
+    {lot.image ? (
+      <Image
+        src={lot.image}
+        alt={`${altPrefix} ${lot.area}`}
+        class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+        width={500}
+      />
+    ) : (
+      <div class="flex h-full w-full items-center justify-center bg-gradient-to-br from-brand-charcoal to-brand-forest">
+        <span class="px-4 text-center font-display text-xs uppercase tracking-wide text-brand-cream/40">
+          [PENDIENTE: foto/video del lote]
+        </span>
+      </div>
+    )}
+    <span class={`absolute right-3 top-3 rounded-full px-3 py-1 font-display text-xs uppercase tracking-wide ${accentClass}`}>
+      {lot.estado}
+    </span>
+  </div>
+  <div class="flex flex-1 flex-col gap-3 p-5">
+    <p class="font-display text-lg font-bold uppercase tracking-wide text-brand-gold-light">
+      {lot.area}
+    </p>
+    <a
+      href={waLink(lot.whatsappMessage)}
+      target="_blank"
+      rel="noopener noreferrer"
+      class={`mt-auto rounded-full px-5 py-2 text-center font-display text-xs uppercase tracking-wide transition-transform hover:scale-105 ${accentClass}`}
+    >
+      Consultar por WhatsApp
+    </a>
+  </div>
+</div>

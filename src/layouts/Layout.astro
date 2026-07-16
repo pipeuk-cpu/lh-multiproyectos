@@ -1,0 +1,98 @@
+---
+import "../styles/global.css";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+import { SITE } from "../config/site";
+
+interface Props {
+  title: string;
+  description: string;
+  whatsappMessage: string;
+}
+
+const { title, description, whatsappMessage } = Astro.props;
+
+const nav = [
+  { href: "/", label: "Inicio" },
+  { href: "/tumbaga", label: "Tumbaga" },
+  { href: "/la-aldea", label: "La Aldea" },
+  { href: "/locales", label: "Locales" },
+  { href: "/nosotros", label: "Nosotros" },
+  { href: "/contacto", label: "Contacto" },
+];
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body class="bg-brand-cream text-brand-charcoal antialiased">
+    <header class="sticky top-0 z-40 bg-brand-forest/95 backdrop-blur">
+      <nav class="mx-auto flex max-w-6xl flex-wrap items-center justify-between px-4 py-3 md:px-8">
+        <div class="flex w-full items-center justify-between md:w-auto">
+          <a href="/" class="font-display text-lg font-bold uppercase tracking-wide text-brand-cream">
+            LH Multiproyectos
+          </a>
+          <button
+            id="nav-toggle"
+            class="text-brand-cream md:hidden"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+          >
+            <svg viewBox="0 0 24 24" class="h-7 w-7 fill-current"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+          </button>
+        </div>
+        <ul id="nav-menu" class="hidden w-full flex-col gap-1 pt-3 md:flex md:w-auto md:flex-row md:items-center md:gap-6 md:pt-0">
+          {nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="block rounded px-2 py-2 font-display text-sm uppercase tracking-wide text-brand-cream/90 transition-colors hover:text-brand-gold-light md:px-0"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="bg-brand-forest px-4 py-10 text-brand-cream/90 md:px-8">
+      <div class="mx-auto max-w-6xl">
+        <p class="font-display text-lg uppercase tracking-wide text-brand-gold-light">{SITE.name}</p>
+        <p class="mt-2 text-sm">Sala de ventas: {SITE.salesOffice}</p>
+        <div class="mt-4 flex gap-4 text-sm">
+          <a href={SITE.instagram.lh} target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold-light">
+            Instagram @lhmultiproyectos
+          </a>
+          <a href={SITE.instagram.tumbaga} target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold-light">
+            Instagram @condominiotumbaga
+          </a>
+        </div>
+        <p class="mt-6 text-xs text-brand-cream/60">
+          © {new Date().getFullYear()} {SITE.name}. Todos los derechos reservados.
+        </p>
+      </div>
+    </footer>
+
+    <WhatsAppButton message={whatsappMessage} />
+
+    <script>
+      const toggle = document.getElementById("nav-toggle");
+      const menu = document.getElementById("nav-menu");
+      toggle?.addEventListener("click", () => {
+        const isOpen = menu?.classList.toggle("flex");
+        menu?.classList.toggle("hidden");
+        toggle.setAttribute("aria-expanded", String(!!isOpen));
+      });
+    </script>
+  </body>
+</html>

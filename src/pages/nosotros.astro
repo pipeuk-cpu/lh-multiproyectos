@@ -1,0 +1,87 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { waLink, SITE } from "../config/site";
+
+const comoTrabajamos = [
+  {
+    title: "Dron",
+    desc: "Capturamos el terreno real, tal como está hoy, desde el aire.",
+  },
+  {
+    title: "Render",
+    desc: "Proyectamos la casa o finca posible sobre ese mismo terreno.",
+  },
+  {
+    title: "Acompañamiento",
+    desc: "Te guiamos en cada paso, desde la primera visita hasta la escritura.",
+  },
+];
+---
+
+<Layout
+  title="Nosotros | LH Multiproyectos SAS"
+  description="Conoce a LH Multiproyectos SAS y el concepto que nos define: el puente entre lo que la propiedad es hoy y lo que puede llegar a ser."
+  whatsappMessage={SITE.whatsappMessages.nosotros}
+>
+  <section class="bg-brand-forest px-4 py-16 text-brand-cream md:px-8 md:py-24">
+    <div class="mx-auto max-w-4xl text-center">
+      <h1 class="font-display text-4xl font-bold uppercase tracking-wide md:text-5xl">
+        Nosotros
+      </h1>
+      <p class="mt-6 text-lg text-brand-cream/90">
+        LH Multiproyectos SAS es una empresa de propiedad raíz en Cartago, Valle del Cauca, con dos
+        líneas de negocio insignia — Condominio Tumbaga y La Aldea en Alcalá — además de locales
+        comerciales en arriendo en la ciudad.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-brand-cream px-4 py-16 md:px-8 md:py-24">
+    <div class="mx-auto max-w-4xl text-center">
+      <h2 class="font-display text-3xl font-bold uppercase tracking-wide text-brand-forest md:text-4xl">
+        El puente entre lo que es y lo que puede ser
+      </h2>
+      <p class="mt-4 text-brand-charcoal/80">
+        No vendemos potreros: vendemos la transformación. Nuestra herramienta de venta son videos de
+        dron del terreno real combinados con renders y animaciones de la casa posible sobre ese mismo
+        terreno. Así, cada familia puede ver — antes de construir — lo que su tierra puede llegar a ser.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-brand-forest px-4 py-16 text-brand-cream md:px-8 md:py-24">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="text-center font-display text-3xl font-bold uppercase tracking-wide md:text-4xl">
+        Cómo trabajamos
+      </h2>
+      <div class="mt-10 grid gap-8 sm:grid-cols-3">
+        {comoTrabajamos.map((item, i) => (
+          <div class="text-center">
+            <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-gold/15 font-display text-lg font-bold text-brand-gold">
+              {i + 1}
+            </div>
+            <h3 class="mt-4 font-display text-base font-bold uppercase tracking-wide text-brand-gold-light">
+              {item.title}
+            </h3>
+            <p class="mt-2 text-sm text-brand-cream/70">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-brand-charcoal px-4 py-20 text-center text-brand-cream md:px-8">
+    <h2 class="font-display text-3xl font-bold uppercase tracking-wide md:text-4xl">
+      ¿Quieres conocer más?
+    </h2>
+    <p class="mt-4 text-brand-cream/80">Hablemos sobre el proyecto que mejor se ajusta a lo que buscas.</p>
+    <a
+      href={waLink(SITE.whatsappMessages.nosotros)}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mt-8 inline-block rounded-full bg-brand-gold px-10 py-3 font-display text-sm uppercase tracking-wide text-brand-charcoal transition-transform hover:scale-105"
+    >
+      Escríbenos por WhatsApp
+    </a>
+  </section>
+</Layout>
