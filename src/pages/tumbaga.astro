@@ -2,12 +2,20 @@
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import BeforeAfterSlider from "../components/BeforeAfterSlider.astro";
-import LotCard from "../components/LotCard.astro";
+import TumbagaLotMap from "../components/TumbagaLotMap.astro";
 import { waLink, SITE } from "../config/site";
-import { tumbagaLots } from "../data/tumbaga-lots";
+import { tumbagaLots, lotWhatsappMessage } from "../data/tumbaga-lots";
 import tumbagaMirador from "../assets/tumbaga/mirador.png";
 import antesRender from "../assets/tumbaga/antes-render.jpg";
 import despuesRender from "../assets/tumbaga/despues-render.png";
+import galeria1 from "../assets/tumbaga/lote-5.jpg";
+import galeria2 from "../assets/tumbaga/lote-8.jpg";
+import galeria3 from "../assets/tumbaga/lote-11.jpg";
+import galeria4 from "../assets/tumbaga/lote-12.jpg";
+import galeria5 from "../assets/tumbaga/lote-14.jpg";
+import galeria6 from "../assets/tumbaga/lote-15.jpg";
+
+const galeria = [galeria1, galeria2, galeria3, galeria4, galeria5, galeria6];
 
 const datosClave = [
   "Desde 1.500 m²",
@@ -104,18 +112,68 @@ const mapsSrc =
     </div>
   </section>
 
-  <!-- Galería / lotes disponibles -->
+  <!-- Plano interactivo de lotes -->
   <section id="lotes" class="bg-brand-forest px-4 py-16 text-brand-cream md:px-8 md:py-24">
     <div class="mx-auto max-w-6xl">
       <h2 class="text-center font-display text-3xl font-bold uppercase tracking-wide md:text-4xl">
-        Lotes disponibles
+        Elige tu lote
       </h2>
       <p class="mt-3 text-center text-sm text-brand-cream/70">
-        [PENDIENTE: confirmar áreas y disponibilidad exacta de cada lote con Felipe]
+        17 lotes campestres sobre el plano oficial de parcelación.
       </p>
-      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="mt-10">
+        <TumbagaLotMap />
+      </div>
+
+      <!-- Lista compacta de disponibilidad -->
+      <div class="mx-auto mt-10 grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
         {tumbagaLots.map((lot) => (
-          <LotCard lot={lot} altPrefix="Lote en Tumbaga de" />
+          lot.estado === "disponible" ? (
+            <a
+              href={waLink(lotWhatsappMessage(lot))}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="rounded-lg border border-brand-gold/40 bg-brand-charcoal/40 p-3 text-center transition-colors hover:border-brand-gold"
+            >
+              <p class="font-display text-sm font-bold uppercase tracking-wide text-brand-gold-light">
+                Lote {lot.num}
+              </p>
+              <p class="mt-1 text-xs text-brand-cream/80">{lot.area}</p>
+              <p class="mt-1 font-display text-[10px] uppercase tracking-wide text-brand-gold">Disponible</p>
+            </a>
+          ) : (
+            <div class="rounded-lg border border-brand-cream/10 bg-brand-charcoal/60 p-3 text-center opacity-60">
+              <p class="font-display text-sm font-bold uppercase tracking-wide text-brand-cream/70">
+                Lote {lot.num}
+              </p>
+              <p class="mt-1 text-xs text-brand-cream/50">{lot.area}</p>
+              <p class="mt-1 font-display text-[10px] uppercase tracking-wide text-brand-cream/50">Vendido</p>
+            </div>
+          )
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Galería -->
+  <section class="bg-brand-cream px-4 py-16 md:px-8 md:py-24">
+    <div class="mx-auto max-w-6xl">
+      <h2 class="text-center font-display text-3xl font-bold uppercase tracking-wide text-brand-forest md:text-4xl">
+        Así se ve Tumbaga
+      </h2>
+      <p class="mt-3 text-center text-sm text-brand-charcoal/60">
+        Fotografía real de dron del condominio y su entorno.
+      </p>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {galeria.map((foto, i) => (
+          <div class="overflow-hidden rounded-xl shadow-md">
+            <Image
+              src={foto}
+              alt={`Vista aérea del Condominio Tumbaga ${i + 1}`}
+              class="h-56 w-full object-cover transition-transform duration-300 hover:scale-105"
+              width={600}
+            />
+          </div>
         ))}
       </div>
     </div>
