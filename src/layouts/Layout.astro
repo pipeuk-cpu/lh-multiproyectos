@@ -1,4 +1,6 @@
 ---
+import "@fontsource-variable/oswald";
+import "@fontsource-variable/inter";
 import "../styles/global.css";
 import WhatsAppButton from "../components/WhatsAppButton.astro";
 import { SITE } from "../config/site";
@@ -39,7 +41,7 @@ const nav = [
           </a>
           <button
             id="nav-toggle"
-            class="text-brand-cream md:hidden"
+            class="cursor-pointer text-brand-cream md:hidden"
             aria-label="Abrir menú"
             aria-expanded="false"
           >

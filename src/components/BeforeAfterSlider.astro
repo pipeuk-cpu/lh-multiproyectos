@@ -53,7 +53,15 @@ const {
 
   <!-- Manija -->
   <div class="ba-handle pointer-events-none absolute inset-y-0 flex w-0.5 -translate-x-1/2 items-center bg-brand-gold" style="left: var(--pos)">
-    <div class="pointer-events-auto flex h-10 w-10 -translate-x-1/2 cursor-ew-resize items-center justify-center rounded-full border-2 border-brand-gold bg-brand-cream shadow-lg">
+    <div
+      class="ba-thumb pointer-events-auto flex h-10 w-10 -translate-x-1/2 cursor-ew-resize items-center justify-center rounded-full border-2 border-brand-gold bg-brand-cream shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-gold/70"
+      role="slider"
+      tabindex="0"
+      aria-label="Comparador antes y después"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="50"
+    >
       <svg viewBox="0 0 24 24" class="h-5 w-5 fill-brand-forest"><path d="M8 5l-6 7 6 7V5zm8 0v14l6-7-6-7z"/></svg>
     </div>
   </div>
@@ -66,13 +74,29 @@ const {
       slider.dataset.initialized = "true";
 
       const handle = slider.querySelector<HTMLElement>(".ba-handle");
+      const thumb = slider.querySelector<HTMLElement>(".ba-thumb");
       let dragging = false;
+      let pos = 50;
+
+      const apply = (pct: number) => {
+        pos = Math.min(100, Math.max(0, pct));
+        slider.style.setProperty("--pos", `${pos}%`);
+        thumb?.setAttribute("aria-valuenow", String(Math.round(pos)));
+      };
 
       const setPos = (clientX: number) => {
         const rect = slider.getBoundingClientRect();
-        const pct = Math.min(100, Math.max(0, ((clientX - rect.left) / rect.width) * 100));
-        slider.style.setProperty("--pos", `${pct}%`);
+        apply(((clientX - rect.left) / rect.width) * 100);
       };
+
+      thumb?.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key === "ArrowLeft") apply(pos - 5);
+        else if (e.key === "ArrowRight") apply(pos + 5);
+        else if (e.key === "Home") apply(0);
+        else if (e.key === "End") apply(100);
+        else return;
+        e.preventDefault();
+      });
 
       const start = (e: PointerEvent) => {
         dragging = true;

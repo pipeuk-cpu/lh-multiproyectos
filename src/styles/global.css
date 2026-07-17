@@ -4,8 +4,8 @@
 @source not "../assets/**/*.{jpg,jpeg,png,webp,avif,mp4}";
 
 @theme {
-  --font-display: "Oswald", "Archivo Expanded", sans-serif;
-  --font-body: "Inter", "Source Sans 3", sans-serif;
+  --font-display: "Oswald Variable", "Oswald", "Archivo Expanded", sans-serif;
+  --font-body: "Inter Variable", "Inter", "Source Sans 3", sans-serif;
 
   /* LH Multiproyectos / Tumbaga brand palette */
   --color-brand-forest: #1b2b20;
@@ -21,6 +21,18 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  ::before,
+  ::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
 
 body {
