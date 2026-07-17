@@ -4,5 +4,6 @@ export interface LocalComercial {
   direccion: string;
   area: string;
   precio?: string;
+  modalidad: "Venta" | "Arriendo" | "Venta o arriendo";
   whatsappMessage: string;
 }

@@ -23,8 +23,8 @@ const businessLines = [
   },
   {
     title: "Locales Comerciales",
-    tagline: "Arriendo en Cartago",
-    description: "Espacios comerciales bien ubicados en el corazón de Cartago.",
+    tagline: "Venta y arriendo en Cartago",
+    description: "Espacios comerciales bien ubicados en el corazón de Cartago, disponibles para venta o arriendo.",
     href: "/locales",
   },
 ];
@@ -38,8 +38,8 @@ const whyEjeCafetero = [
 ---
 
 <Layout
-  title="LH Multiproyectos SAS | Lotes campestres y locales comerciales en el Eje Cafetero"
-  description="Lotes campestres en Tumbaga y La Aldea, además de locales comerciales en arriendo en Cartago, Valle del Cauca."
+  title="LH Multiproyectos SAS | Lotes campestres, casas y locales comerciales en el Eje Cafetero"
+  description="Lotes campestres en venta en Tumbaga y La Aldea, diseño y construcción de casas campestres, y locales comerciales en venta o arriendo en Cartago, Valle del Cauca."
   whatsappMessage={SITE.whatsappMessages.home}
 >
   <!-- Hero -->
@@ -88,7 +88,8 @@ const whyEjeCafetero = [
         De lo que es → a lo que puede ser
       </h2>
       <p class="mt-4 text-brand-charcoal/80">
-        Vendemos la transformación, no el potrero. Arrastra para comparar el terreno real con la propiedad posible.
+        No te vendemos solo el lote: te mostramos — y te construimos — lo que puede llegar a ser.
+        Arrastra para comparar el terreno real con la casa que podemos hacer realidad sobre él.
       </p>
     </div>
     <div class="mt-10">
@@ -98,6 +99,20 @@ const whyEjeCafetero = [
         afterImage={despuesRender}
         afterAlt="Render de la casa posible sobre el lote"
       />
+    </div>
+    <div class="mx-auto mt-8 max-w-2xl text-center">
+      <p class="text-brand-charcoal/80">
+        ¿Ya tienes tu lote o estás por elegirlo? Nuestro equipo diseña y construye la casa campestre
+        de tus sueños, desde el render hasta la entrega de llaves.
+      </p>
+      <a
+        href={waLink(SITE.whatsappMessages.construccion)}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-5 inline-block rounded-full bg-brand-forest px-8 py-3 font-display text-sm uppercase tracking-wide text-brand-cream transition-transform hover:scale-105"
+      >
+        Quiero construir mi casa
+      </a>
     </div>
   </section>
 
