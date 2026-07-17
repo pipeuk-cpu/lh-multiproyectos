@@ -1,5 +1,5 @@
 // Número único de WhatsApp para todos los CTAs del sitio.
-export const WHATSAPP_NUMBER = "PENDIENTE"; // [PENDIENTE: número de WhatsApp de LH Multiproyectos]
+export const WHATSAPP_NUMBER = "573127403919";
 
 // Correo de respaldo para el formulario de contacto.
 export const CONTACT_EMAIL = "PENDIENTE@lhmultiproyectos.com"; // [PENDIENTE: correo real de contacto]
